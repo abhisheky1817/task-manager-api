@@ -1,3 +1,5 @@
+import { createTaskService } from "../services/task.service";
+
 export const createTask = (req, res) => {
   
     const {title} = req.body;
@@ -9,10 +11,7 @@ export const createTask = (req, res) => {
     });
   }
 
-  const task = {
-    id: 1,
-    title
-  };
+  const task = createTaskService(title);
 
   return res.status(201).json({
     success: true,
