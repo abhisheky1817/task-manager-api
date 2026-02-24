@@ -1,15 +1,16 @@
-export const createTaskService = (title) => {
-  const processedTitle = title.trim();
+import { saveTask } from "../repositories/task.repository.js";
 
-    if (processedTitle.length < 5) {
+export const createTaskService = (title) => {
+  if (!title || title.length < 5) {
     throw new Error("Title must be at least 5 characters");
   }
 
-  const task = {
-    id: Date.now(),
-    title: processedTitle,
+  const taskData = {
+    title,
     createdAt: new Date()
   };
 
-  return task;
+  const savedTask = saveTask(taskData);
+
+  return savedTask;
 };
